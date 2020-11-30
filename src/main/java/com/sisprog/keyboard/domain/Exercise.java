@@ -18,10 +18,10 @@ import javax.persistence.Table;
 public class Exercise {
 
     @Id
-    private long id;
+    private Long id;
 
     private String words;
 
     @Column(name = "level_id")
-    private long levelId;
+    private Long levelId;
 }

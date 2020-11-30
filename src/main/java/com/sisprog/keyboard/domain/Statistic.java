@@ -15,29 +15,29 @@ import java.util.Date;
 public class Statistic {
 
     @Id
-    private long id;
+    private Long id;
 
     @Column(name = "max_speed")
-    private int maxSpeed;
+    private Integer maxSpeed;
 
     @Column(name = "avg_speed")
-    private int avgSpeed;
+    private Integer avgSpeed;
 
-    private int errors;
+    private Integer errors;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "date_execution")
     private Date dateExecution;
 
     @Column(name = "number_of_executions")
-    private int numberOfExecutions;
+    private Integer numberOfExecutions;
 
     @Column(name = "number_of_failures")
-    private int numberOfFailures;
+    private Integer numberOfFailures;
 
     @Column(name = "user_id")
-    private long userId;
+    private Long userId;
 
     @Column(name = "exercise_id")
-    private long exerciseId;
+    private Long exerciseId;
 }

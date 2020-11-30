@@ -17,22 +17,22 @@ import javax.persistence.Table;
 public class DifficultyLevel {
 
     @Id
-    private long id;
+    private Long id;
 
     private String name;
 
     @Column(name = "max_length")
-    private int maxLength;
+    private Integer maxLength;
 
     @Column(name = "min_length")
-    private int minLength;
+    private Integer minLength;
 
     @Column(name = "max_errors")
-    private int maxErrors;
+    private Integer maxErrors;
 
     @Column(name = "time_press")
-    private int timePress;
+    private Integer timePress;
 
     @Column(name = "zone_id")
-    private long zoneId;
+    private Long zoneId;
 }

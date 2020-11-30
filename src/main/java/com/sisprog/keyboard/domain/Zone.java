@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Zone {
 
     @Id
-    private long id;
+    private Long id;
 
     private String symbols;
 }

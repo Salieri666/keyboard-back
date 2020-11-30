@@ -16,7 +16,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String username;
@@ -24,16 +24,16 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    private int active;
+    private Integer active;
 
     private String roles;
 
     private String permissions = "";
 
     @Column(name = "level_id")
-    private long levelId;
+    private Long levelId;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -45,7 +45,7 @@ public class User {
         return password;
     }
 
-    public int getActive() {
+    public Integer getActive() {
         return active;
     }
 
@@ -69,5 +69,13 @@ public class User {
             return Arrays.asList(this.permissions.split(","));
         }
         return new ArrayList<>();
+    }
+
+    public Long getLevelId() {
+        return levelId;
+    }
+
+    public void setLevelId(Long levelId) {
+        this.levelId = levelId;
     }
 }
