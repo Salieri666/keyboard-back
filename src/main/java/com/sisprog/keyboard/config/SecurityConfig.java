@@ -2,6 +2,9 @@ package com.sisprog.keyboard.config;
 
 
 import com.sisprog.keyboard.dao.UserDao;
+import com.sisprog.keyboard.security.JwtConfigurer;
+import com.sisprog.keyboard.security.JwtTokenProvider;
+import com.sisprog.keyboard.security.UserJwtDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,30 +28,30 @@ import java.util.List;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    //private final UserJwtDetailsService userJwtDetailsService;
+    private final UserJwtDetailsService userJwtDetailsService;
     private final UserDao userRepository;
-    //private final JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenProvider jwtTokenProvider;
 
-    /*@Bean
+    @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
-    }*/
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .cors()
                 .and()
-                .csrf().disable();
-                /*.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
                 // configure access rules
                 .antMatchers(HttpMethod.POST, "/api/login","/api/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .apply(new JwtConfigurer(jwtTokenProvider));*/
+                .apply(new JwtConfigurer(jwtTokenProvider));
     }
 
 
