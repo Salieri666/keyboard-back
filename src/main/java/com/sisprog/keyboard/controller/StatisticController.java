@@ -3,6 +3,8 @@ package com.sisprog.keyboard.controller;
 import com.sisprog.keyboard.dto.StatisticDto;
 import com.sisprog.keyboard.service.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +31,11 @@ public class StatisticController {
     @GetMapping(value = "/getAllStatistics", produces = APPLICATION_JSON_VALUE)
     public List<StatisticDto> getAllStatistics() {
         return statisticService.getAll();
+    }
+
+    @GetMapping(value = "/getAllStatisticsByPage", produces = APPLICATION_JSON_VALUE)
+    public Page<StatisticDto> getAllStatisticsByPage(Pageable pageable) {
+        return statisticService.getAllByPage(pageable);
     }
 
     @PostMapping(value = "/updateStatistic", produces = APPLICATION_JSON_VALUE)

@@ -3,6 +3,8 @@ package com.sisprog.keyboard.controller;
 import com.sisprog.keyboard.dto.ExerciseDto;
 import com.sisprog.keyboard.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +31,11 @@ public class ExerciseController {
     @GetMapping(value = "/getAllExercises", produces = APPLICATION_JSON_VALUE)
     public List<ExerciseDto> getAllExercises() {
         return exerciseService.getAll();
+    }
+
+    @GetMapping(value = "/getAllExercisesByPage", produces = APPLICATION_JSON_VALUE)
+    public Page<ExerciseDto> getAllExercisesByPage(Pageable pageable) {
+        return exerciseService.getAllByPage(pageable);
     }
 
     @PostMapping(value = "/updateExercise", produces = APPLICATION_JSON_VALUE)

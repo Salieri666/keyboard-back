@@ -3,6 +3,8 @@ package com.sisprog.keyboard.controller;
 import com.sisprog.keyboard.dto.ZoneDto;
 import com.sisprog.keyboard.service.ZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +32,11 @@ public class ZoneController {
     @GetMapping(value = "/getAllZones", produces = APPLICATION_JSON_VALUE)
     public List<ZoneDto> getAllZones() {
         return zoneService.getAllZone();
+    }
+
+    @GetMapping(value = "/getAllZonesByPage", produces = APPLICATION_JSON_VALUE)
+    public Page<ZoneDto> getAllZonesByPage(Pageable pageable) {
+        return zoneService.getZoneByPage(pageable);
     }
 
     @PostMapping(value = "/updateZone", produces = APPLICATION_JSON_VALUE)

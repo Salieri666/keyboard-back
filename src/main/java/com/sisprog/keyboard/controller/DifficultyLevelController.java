@@ -3,6 +3,8 @@ package com.sisprog.keyboard.controller;
 import com.sisprog.keyboard.dto.DifficultyLevelDto;
 import com.sisprog.keyboard.service.DifficultyLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +31,11 @@ public class DifficultyLevelController {
     @GetMapping(value = "/getAllLevels", produces = APPLICATION_JSON_VALUE)
     public List<DifficultyLevelDto> getAllLevels() {
         return difficultyLevelService.getAllLevels();
+    }
+
+    @GetMapping(value = "/getAllLevelsByPage", produces = APPLICATION_JSON_VALUE)
+    public Page<DifficultyLevelDto> getAllLevelsByPage(Pageable pageable) {
+        return difficultyLevelService.getAllByPage(pageable);
     }
 
     @PostMapping(value = "/updateLevel", produces = APPLICATION_JSON_VALUE)

@@ -3,6 +3,8 @@ package com.sisprog.keyboard.controller;
 import com.sisprog.keyboard.dto.UserDto;
 import com.sisprog.keyboard.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,5 +29,10 @@ public class UserController {
     @GetMapping(value = "/getAllUsers", produces = APPLICATION_JSON_VALUE)
     public List<UserDto> getAllUsers() {
         return userService.getAll();
+    }
+
+    @GetMapping(value = "/getAllUsersByPage", produces = APPLICATION_JSON_VALUE)
+    public Page<UserDto> getAllUsersByPage(Pageable pageable) {
+        return userService.getAllByPage(pageable);
     }
 }
