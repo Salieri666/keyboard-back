@@ -54,6 +54,9 @@ public class AuthenticationController {
                 Map<Object, Object> response = new HashMap<>();
                 response.put("username", username);
                 response.put("token", token);
+                response.put("id", user.getId());
+                response.put("role", user.getRoles());
+                response.put("levelId", user.getLevelId());
 
                 return ResponseEntity.ok(response);
             } catch (AuthenticationException e) {
