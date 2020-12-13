@@ -27,8 +27,8 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public void reg(@RequestBody RegistrationRequestDto requestDto){
-        if(requestDto!=null){
+    public void reg(@RequestBody RegistrationRequestDto requestDto) {
+        if (requestDto != null) {
             try {
                 User user = userRepository.findByUsername(requestDto.getUsername());
 
@@ -45,10 +45,13 @@ public class RegistrationController {
                 newuser.setActive(1);
 
                 userRepository.save(newuser);
-            }catch (DataAccessException e){
+            } catch (DataAccessException e) {
                 e.printStackTrace();
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-            }catch (Exception|Error e){
+            } catch (UsernameNotFoundException e) {
+                e.printStackTrace();
+                throw new ResponseStatusException(HttpStatus.CONFLICT);
+            } catch (Exception | Error e) {
                 e.printStackTrace();
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
             }
