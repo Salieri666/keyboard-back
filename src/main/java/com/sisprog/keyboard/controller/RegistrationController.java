@@ -43,6 +43,7 @@ public class RegistrationController {
                 newuser.setRoles(requestDto.getRoles());
                 newuser.setPermissions("");
                 newuser.setActive(1);
+                newuser.setLevelId(requestDto.getLevelId());
 
                 userRepository.save(newuser);
             } catch (DataAccessException e) {

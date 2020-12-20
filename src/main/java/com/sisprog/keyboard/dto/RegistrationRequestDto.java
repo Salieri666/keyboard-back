@@ -12,4 +12,5 @@ public class RegistrationRequestDto {
     private String password;
     private String roles;
     private String permissions;
+    private Long levelId;
 }
