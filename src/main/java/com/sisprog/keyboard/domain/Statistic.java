@@ -15,6 +15,7 @@ import java.util.Date;
 public class Statistic {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "max_speed")
