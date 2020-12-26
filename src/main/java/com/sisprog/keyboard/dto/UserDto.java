@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 public class UserDto {
     private Long id;
     private String username;
-    private String password;
     private Integer active;
     private String roles;
     private String permissions = "";
@@ -21,7 +20,6 @@ public class UserDto {
         UserDto dto = new UserDto();
         dto.setId(user.getId());
         dto.setUsername(user.getUsername());
-        dto.setPassword(user.getPassword());//--->??
         dto.setActive(user.getActive());
         dto.setRoles(user.getRoles());
         dto.setPermissions(user.getPermissions());
