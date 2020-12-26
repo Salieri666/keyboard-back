@@ -1,6 +1,7 @@
 package com.sisprog.keyboard.service;
 
 import com.sisprog.keyboard.dao.UserDao;
+import com.sisprog.keyboard.domain.User;
 import com.sisprog.keyboard.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -28,5 +29,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public Page<UserDto> getAllByPage(Pageable pageable) {
         return userDao.findUsersByRole("USER", pageable).map(UserDto::of);
+    }
+
+    @Override
+    public UserDto changeUserLevel(UserDto userDto) {
+        User user = userDao.getOne(userDto.getId());
+        user.setLevelId(userDto.getLevelId());
+
+        return UserDto.of(userDao.save(user));
     }
 }

@@ -13,4 +13,6 @@ public interface UserService {
     List<UserDto> getAll();
 
     Page<UserDto> getAllByPage(Pageable pageable);
+
+    UserDto changeUserLevel(UserDto userDto);
 }
