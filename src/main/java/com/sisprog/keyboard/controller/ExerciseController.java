@@ -47,4 +47,9 @@ public class ExerciseController {
     public ExerciseDto saveExercise(@RequestBody ExerciseDto exerciseDto) {
         return exerciseService.save(exerciseDto);
     }
+
+    @GetMapping(value = "/getRandomExercise", produces = APPLICATION_JSON_VALUE)
+    public ExerciseDto getRandomExercise() {
+        return exerciseService.getRandomExercise();
+    }
 }

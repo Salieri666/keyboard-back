@@ -19,4 +19,6 @@ public interface ExerciseService {
     void delete(Long id);
 
     Page<ExerciseDto> getAllByPage(Pageable pageable);
+
+    ExerciseDto getRandomExercise();
 }
