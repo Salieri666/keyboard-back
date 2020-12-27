@@ -26,7 +26,7 @@ public class ExerciseDto {
     public static Exercise of(ExerciseDto exerciseDto) {
         Exercise exercise = new Exercise();
         exercise.setId(exerciseDto.getId());
-        exercise.setWords(exerciseDto.getWords());
+        exercise.setWords(exerciseDto.getWords().replaceAll("\\p{Cntrl}", ""));
         exercise.setLevelId(exerciseDto.getLevelId());
         exercise.setName(exerciseDto.getName());
         return exercise;
