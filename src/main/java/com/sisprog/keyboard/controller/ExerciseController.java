@@ -52,4 +52,9 @@ public class ExerciseController {
     public ExerciseDto getRandomExercise() {
         return exerciseService.getRandomExercise();
     }
+
+    @GetMapping(value = "/getExecutedExercisesByUser/{userId}")
+    public List<ExerciseDto> getExecutedExercisesByUser(@PathVariable("userId") Long userId) {
+        return exerciseService.getExecutedExercisesByUser(userId);
+    }
 }

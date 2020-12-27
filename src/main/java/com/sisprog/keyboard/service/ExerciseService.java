@@ -21,4 +21,6 @@ public interface ExerciseService {
     Page<ExerciseDto> getAllByPage(Pageable pageable);
 
     ExerciseDto getRandomExercise();
+
+    List<ExerciseDto> getExecutedExercisesByUser(Long userId);
 }

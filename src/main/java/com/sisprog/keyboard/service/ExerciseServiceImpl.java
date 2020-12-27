@@ -75,4 +75,9 @@ public class ExerciseServiceImpl implements ExerciseService{
 
         return exerciseDto;
     }
+
+    @Override
+    public List<ExerciseDto> getExecutedExercisesByUser(Long userId) {
+        return exerciseDao.getExecutedExercisesByUser(userId).stream().map(ExerciseDto::of).collect(Collectors.toList());
+    }
 }
