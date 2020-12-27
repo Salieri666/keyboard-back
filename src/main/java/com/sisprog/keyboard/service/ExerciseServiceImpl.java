@@ -72,7 +72,7 @@ public class ExerciseServiceImpl implements ExerciseService{
         Random random = new Random();
 
         List<DifficultyLevel> difficultyLevels = difficultyLevelDao.findAll();
-        DifficultyLevel level = difficultyLevels.get(random.nextInt(difficultyLevels.size()+1));
+        DifficultyLevel level = difficultyLevels.get(random.nextInt(difficultyLevels.size()));
 
         Zone zone = zoneDao.getOne(level.getZoneId());
 
