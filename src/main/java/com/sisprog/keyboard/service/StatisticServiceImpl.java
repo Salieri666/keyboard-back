@@ -44,4 +44,9 @@ public class StatisticServiceImpl implements StatisticService {
     public Page<StatisticDto> getAllByPage(Pageable pageable) {
         return statisticDao.findAll(pageable).map(StatisticDto::of);
     }
+
+    @Override
+    public List<StatisticDto> getByUser(Long userId) {
+        return statisticDao.getStatisticsByUserId(userId).stream().map(StatisticDto::of).collect(Collectors.toList());
+    }
 }

@@ -47,4 +47,9 @@ public class StatisticController {
     public StatisticDto saveStatistic(@RequestBody StatisticDto statisticDto) {
         return statisticService.save(statisticDto);
     }
+
+    @GetMapping(value = "/getStatisticByUser/{userId}", produces = APPLICATION_JSON_VALUE)
+    public List<StatisticDto> getStatisticByUser(@PathVariable("userId") Long userId) {
+        return statisticService.getByUser(userId);
+    }
 }

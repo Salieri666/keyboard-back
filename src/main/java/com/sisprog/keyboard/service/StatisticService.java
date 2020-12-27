@@ -18,4 +18,6 @@ public interface StatisticService {
     void delete(Long id);
 
     Page<StatisticDto> getAllByPage(Pageable pageable);
+
+    List<StatisticDto> getByUser(Long userId);
 }
