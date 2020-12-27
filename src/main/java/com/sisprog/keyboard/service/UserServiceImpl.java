@@ -2,10 +2,12 @@ package com.sisprog.keyboard.service;
 
 import com.sisprog.keyboard.dao.UserDao;
 import com.sisprog.keyboard.domain.User;
+import com.sisprog.keyboard.dto.UpdateUserDto;
 import com.sisprog.keyboard.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserDao userDao;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDto getById(Long id) {
@@ -37,5 +40,14 @@ public class UserServiceImpl implements UserService {
         user.setLevelId(userDto.getLevelId());
 
         return UserDto.of(userDao.save(user));
+    }
+
+    @Override
+    public void updateUser(UpdateUserDto userDto) {
+        User user = userDao.getOne(userDto.getUserId());
+        user.setUsername(userDto.getUsername());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+
+        userDao.save(user);
     }
 }

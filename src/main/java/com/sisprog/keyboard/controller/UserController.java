@@ -1,5 +1,6 @@
 package com.sisprog.keyboard.controller;
 
+import com.sisprog.keyboard.dto.UpdateUserDto;
 import com.sisprog.keyboard.dto.UserDto;
 import com.sisprog.keyboard.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,10 @@ public class UserController {
     @PostMapping(value = "/changeUserLevel", produces = APPLICATION_JSON_VALUE)
     public UserDto changeUserLevel(@RequestBody UserDto userDto) {
         return userService.changeUserLevel(userDto);
+    }
+
+    @PostMapping(value = "/updateUser", produces = APPLICATION_JSON_VALUE)
+    public void updateUser(@RequestBody UpdateUserDto userDto) {
+        userService.updateUser(userDto);
     }
 }
