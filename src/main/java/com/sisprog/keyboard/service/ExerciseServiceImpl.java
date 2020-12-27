@@ -7,6 +7,7 @@ import com.sisprog.keyboard.domain.DifficultyLevel;
 import com.sisprog.keyboard.domain.Zone;
 import com.sisprog.keyboard.dto.ExerciseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -39,13 +40,21 @@ public class ExerciseServiceImpl implements ExerciseService{
     @Override
     public ExerciseDto save(ExerciseDto exerciseDto) {
         checkExercise(exerciseDto);
-        return ExerciseDto.of(exerciseDao.save(ExerciseDto.of(exerciseDto)));
+        try {
+            return ExerciseDto.of(exerciseDao.save(ExerciseDto.of(exerciseDto)));
+        } catch (DataIntegrityViolationException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getCause().getCause().getMessage());
+        }
     }
 
     @Override
     public void update(ExerciseDto exerciseDto) {
         checkExercise(exerciseDto);
-        exerciseDao.save(ExerciseDto.of(exerciseDto));
+        try {
+            exerciseDao.save(ExerciseDto.of(exerciseDto));
+        } catch (DataIntegrityViolationException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getCause().getCause().getMessage());
+        }
     }
 
     @Override
