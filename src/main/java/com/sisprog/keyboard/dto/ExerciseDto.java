@@ -12,12 +12,14 @@ public class ExerciseDto {
     private Long id;
     private String words;
     private Long levelId;
+    private String name;
 
     public static ExerciseDto of(Exercise exercise) {
         ExerciseDto exerciseDto = new ExerciseDto();
         exerciseDto.setId(exercise.getId());
         exerciseDto.setWords(exercise.getWords());
         exerciseDto.setLevelId(exercise.getLevelId());
+        exerciseDto.setName(exercise.getName());
         return exerciseDto;
     }
 
@@ -26,6 +28,7 @@ public class ExerciseDto {
         exercise.setId(exerciseDto.getId());
         exercise.setWords(exerciseDto.getWords());
         exercise.setLevelId(exerciseDto.getLevelId());
+        exercise.setName(exerciseDto.getName());
         return exercise;
     }
 }

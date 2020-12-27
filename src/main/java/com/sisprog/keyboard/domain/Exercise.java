@@ -22,4 +22,6 @@ public class Exercise {
 
     @Column(name = "level_id")
     private Long levelId;
+
+    private String name;
 }
