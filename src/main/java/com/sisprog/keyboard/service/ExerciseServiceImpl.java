@@ -100,6 +100,8 @@ public class ExerciseServiceImpl implements ExerciseService{
         DifficultyLevel difficultyLevel = difficultyLevelDao.getOne(exerciseDto.getLevelId());
         Zone zone = zoneDao.getOne(difficultyLevel.getZoneId());
 
+        if (exerciseDao.getCountExercisesByLevelId(exerciseDto.getLevelId()) >= 10)
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Only 10 exercises per level");
 
         String zoneText = (zone.getSymbols()+" ").toLowerCase();
         String text = exerciseDto.getWords().toLowerCase();

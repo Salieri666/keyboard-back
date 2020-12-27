@@ -14,4 +14,8 @@ public interface ExerciseDao extends JpaRepository<Exercise, Long> {
             "where e.id in (select distinct s.exercise_id from statistic s " +
             "where s.user_id = :userId)", nativeQuery = true)
     List<Exercise> getExecutedExercisesByUser(Long userId);
+
+    @Query(value = "select count(e) from exercise e " +
+            "where e.level_id = :levelId ", nativeQuery = true)
+    long getCountExercisesByLevelId(Long levelId);
 }
