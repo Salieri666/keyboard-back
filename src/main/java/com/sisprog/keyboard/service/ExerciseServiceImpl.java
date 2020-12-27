@@ -9,11 +9,15 @@ import com.sisprog.keyboard.dto.ExerciseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -34,11 +38,13 @@ public class ExerciseServiceImpl implements ExerciseService{
 
     @Override
     public ExerciseDto save(ExerciseDto exerciseDto) {
+        checkExercise(exerciseDto);
         return ExerciseDto.of(exerciseDao.save(ExerciseDto.of(exerciseDto)));
     }
 
     @Override
     public void update(ExerciseDto exerciseDto) {
+        checkExercise(exerciseDto);
         exerciseDao.save(ExerciseDto.of(exerciseDto));
     }
 
@@ -79,5 +85,25 @@ public class ExerciseServiceImpl implements ExerciseService{
     @Override
     public List<ExerciseDto> getExecutedExercisesByUser(Long userId) {
         return exerciseDao.getExecutedExercisesByUser(userId).stream().map(ExerciseDto::of).collect(Collectors.toList());
+    }
+
+    private void checkExercise(ExerciseDto exerciseDto) {
+        DifficultyLevel difficultyLevel = difficultyLevelDao.getOne(exerciseDto.getLevelId());
+        Zone zone = zoneDao.getOne(difficultyLevel.getZoneId());
+
+
+        String zoneText = (zone.getSymbols()+" ").toLowerCase();
+        String text = exerciseDto.getWords().toLowerCase();
+
+        if (text.length() < difficultyLevel.getMinLength() || text.length() > difficultyLevel.getMaxLength())
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Size is not correct!");
+
+        char[] textArr = text.toCharArray();
+        char[] zoneArr = zoneText.toCharArray();
+
+        Stream<CharSequence> textStream = IntStream.range(0, textArr.length).mapToObj(i -> String.valueOf(textArr[i]));
+
+        if(!textStream.allMatch(zoneText::contains))
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Zone is not correct!");
     }
 }
