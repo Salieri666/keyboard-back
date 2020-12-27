@@ -52,4 +52,9 @@ public class StatisticController {
     public List<StatisticDto> getStatisticByUser(@PathVariable("userId") Long userId) {
         return statisticService.getByUser(userId);
     }
+
+    @GetMapping(value = "/getStatisticByExercise/{exerciseId}", produces = APPLICATION_JSON_VALUE)
+    public List<StatisticDto> getStatisticByExercise(@PathVariable("exerciseId") Long exerciseId) {
+        return statisticService.getByExercise(exerciseId);
+    }
 }

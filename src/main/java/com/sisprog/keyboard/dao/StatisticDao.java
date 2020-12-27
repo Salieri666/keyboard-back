@@ -10,4 +10,6 @@ import java.util.List;
 public interface StatisticDao extends JpaRepository<Statistic, Long> {
 
     List<Statistic> getStatisticsByUserId(Long userId);
+
+    List<Statistic> getStatisticsByExerciseId(Long exerciseId);
 }

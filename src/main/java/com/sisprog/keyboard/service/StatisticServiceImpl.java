@@ -49,4 +49,9 @@ public class StatisticServiceImpl implements StatisticService {
     public List<StatisticDto> getByUser(Long userId) {
         return statisticDao.getStatisticsByUserId(userId).stream().map(StatisticDto::of).collect(Collectors.toList());
     }
+
+    @Override
+    public List<StatisticDto> getByExercise(Long exerciseId) {
+        return statisticDao.getStatisticsByExerciseId(exerciseId).stream().map(StatisticDto::of).collect(Collectors.toList());
+    }
 }

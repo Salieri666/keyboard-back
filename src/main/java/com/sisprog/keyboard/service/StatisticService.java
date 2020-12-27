@@ -20,4 +20,6 @@ public interface StatisticService {
     Page<StatisticDto> getAllByPage(Pageable pageable);
 
     List<StatisticDto> getByUser(Long userId);
+
+    List<StatisticDto> getByExercise(Long exerciseId);
 }
