@@ -99,7 +99,6 @@ public class ExerciseServiceImpl implements ExerciseService{
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Size is not correct!");
 
         char[] textArr = text.toCharArray();
-        char[] zoneArr = zoneText.toCharArray();
 
         Stream<CharSequence> textStream = IntStream.range(0, textArr.length).mapToObj(i -> String.valueOf(textArr[i]));
 
